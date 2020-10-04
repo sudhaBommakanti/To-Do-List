@@ -1,5 +1,6 @@
 package com.company;
 
+import java.net.StandardSocketOptions;
 import java.util.HashMap;
 
 public class CommandWords {
@@ -48,8 +49,9 @@ public class CommandWords {
      */
     public void showAll()
     {
+        int number = 0;
         for(String command : validCommands.keySet()) {
-            System.out.print(">> " + command + " ");
+            System.out.print(">> " + "(" + ++number + ") " + command + " ");
             System.out.println();
         }
         System.out.println();
