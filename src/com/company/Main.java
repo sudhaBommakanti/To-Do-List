@@ -70,13 +70,24 @@ public class Main {
 
     public void addTask() throws ParseException {
             System.out.print("Enter the task title:");
+
             Scanner scanner = new Scanner(System.in);
             String title = scanner.nextLine();
             System.out.println("the name of the title : " + title);
+
             System.out.print("Enter the task date (dd/mm/yyyy):");
             Scanner scanner2 = new Scanner(System.in);
             Date date=format.parse(scanner2.next());
-            task = new Task(title,date);
+
+            System.out.print("Enter the status of the task: ");
+            Scanner scanner3 = new Scanner(System.in);
+            String status = scanner3.nextLine();
+
+            System.out.print("Enter the project category: ");
+            Scanner scanner4 = new Scanner(System.in);
+            String projectCategory = scanner3.nextLine();
+
+            task = new Task(title, date, status, projectCategory);
             String theItem = task.getItem();
             toDoList.add(theItem);
     }
