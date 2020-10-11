@@ -1,8 +1,8 @@
 package CommandPack;
 
 /**
- * This class is part of the "World of Zuul" application.
- * "World of Zuul" is a very simple, text based adventure game.
+ * This class is part of the "To-Do-List" application.
+ * "To-Do-List" is a very simple, text based java application.
  *
  * This class holds information about a command that was issued by the user.
  * A command currently consists of two parts: a CommandPack.CommandWord and a string
@@ -15,8 +15,8 @@ package CommandPack;
  *
  * If the command had only one word, then the second word is <null>.
  *
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Sudha Bommakanti
+ * @version 2020.10.11
  */
 
 public class Command

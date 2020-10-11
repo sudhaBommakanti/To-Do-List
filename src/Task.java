@@ -35,8 +35,6 @@ public class Task implements Serializable
         return this.projectCategory;
     }
 
-
-
     public String getItem() {
         return this.title + " | " + format.format(theDate) + " | " + this.status + " | " + this.projectCategory;
     }
