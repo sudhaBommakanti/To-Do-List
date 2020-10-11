@@ -1,12 +1,15 @@
-package com.company;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.io.Serializable;
 
-public class Task {
+public class Task implements Serializable
+{
     private String title;
     private Date theDate;
     private String status;
     private String projectCategory;
+
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
 
     public Task(String title, Date dueDate, String status, String projectCategory) {
@@ -35,7 +38,7 @@ public class Task {
 
 
     public String getItem() {
-        return this.title + ", " + format.format(theDate) + ", " + this.status + ", " + this.projectCategory;
+        return this.title + " | " + format.format(theDate) + " | " + this.status + " | " + this.projectCategory;
     }
 
 }

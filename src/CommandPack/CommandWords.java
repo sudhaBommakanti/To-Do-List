@@ -1,6 +1,7 @@
-package com.company;
+package CommandPack;
 
-import java.net.StandardSocketOptions;
+import CommandPack.CommandWord;
+
 import java.util.HashMap;
 
 public class CommandWords {
@@ -19,9 +20,9 @@ public class CommandWords {
     }
 
     /**
-     * Find the CommandWord associated with a command word.
+     * Find the CommandPack.CommandWord associated with a command word.
      * @param commandWord The word to look up.
-     * @return The CommandWord correspondng to commandWord, or UNKNOWN
+     * @return The CommandPack.CommandWord correspondng to commandWord, or UNKNOWN
      *         if it is not a valid command word.
      */
     public CommandWord getCommandWord(String commandWord)
