@@ -1,22 +1,22 @@
-package com.company;
+package CommandPack;
 
 /**
- * This class is part of the "World of Zuul" application.
- * "World of Zuul" is a very simple, text based adventure game.
+ * This class is part of the "To-Do-List" application.
+ * "To-Do-List" is a very simple, text based java application.
  *
  * This class holds information about a command that was issued by the user.
- * A command currently consists of two parts: a CommandWord and a string
+ * A command currently consists of two parts: a CommandPack.CommandWord and a string
  * (for example, if the command was "take map", then the two parts
  * are TAKE and "map").
  *
  * The way this is used is: Commands are already checked for being valid
  * command words. If the user entered an invalid command (a word that is not
- * known) then the CommandWord is UNKNOWN.
+ * known) then the CommandPack.CommandWord is UNKNOWN.
  *
  * If the command had only one word, then the second word is <null>.
  *
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Sudha Bommakanti
+ * @version 2020.10.11
  */
 
 public class Command
@@ -27,7 +27,7 @@ public class Command
     /**
      * Create a command object. First and second words must be supplied, but
      * the second may be null.
-     * @param commandWord The CommandWord. UNKNOWN if the command word
+     * @param commandWord The CommandPack.CommandWord. UNKNOWN if the command word
      *                  was not recognised.
      * @param secondWord The second word of the command. May be null.
      */

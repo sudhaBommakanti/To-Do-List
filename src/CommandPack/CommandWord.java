@@ -1,12 +1,14 @@
-package com.company;
+package CommandPack;
 
 public enum CommandWord
 {
-
     // A value for each command word along with its
     // corresponding user interface string.
 
-   SHOW("Show Task List (by date or project)"), ADD("Add New Task"),EDIT("Edit Task (update, mark as done, remove)"),SAVE("Save and Quit"),UNKNOWN("?") ;
+ SHOW("Show"),
+    Add("Add"),
+     EDIT("Edit"),
+      SAVE("Save"),UNKNOWN("?") ;
 
     // The command string.
     private String commandString;
