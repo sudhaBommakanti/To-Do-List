@@ -1,5 +1,3 @@
-import CommandPack.Command;
-import CommandPack.CommandWord;
 
 import java.text.ParseException;
 import java.util.*;
@@ -9,56 +7,58 @@ import java.util.Scanner;
 
 public class Main {
 
-    private Parser parser;
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
     private static ArrayList<Task> taskList = new ArrayList<>();
     public Task task;
 
-    public Main() {
-        parser = new Parser();
-    }
-
     public void toDoLists() throws ParseException{
         welcomeMessage();
-        boolean finished = false;
-        while(! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
     }
 
-    private boolean processCommand(Command command) throws ParseException{
-        boolean wantToQuit = false;
-        CommandWord commandWord = command.getCommandWord();
-
-        switch (commandWord) {
-            case UNKNOWN:
-                System.out.println("No command word with this name");
-                break;
-            case Add:
-                System.out.println("Add a new Task:");
-                addTask();
-                break;
-            case SHOW:
-                showList();
-                break;
-            case EDIT:
-                editTask();
-                System.out.println("Edit a new task");
-                break;
-            case SAVE:
-                System.out.println("Save the task and continue");
-                saveAndQuit(command);
-                break;
-        }
-        return wantToQuit;
+    public int menu(){
+        int choice;
+        Scanner sc = new Scanner(System.in);
+        System.out.println(">> (1) Show Task List (by date or project) ");
+        System.out.println(">> (2) Add New Task ");
+        System.out.println(">> (3) Edit Task (update, mark as done, remove) ");
+        System.out.println(">> (4) Save and Quit");
+        System.out.print("> ");
+        choice = sc.nextInt();
+        return choice;
     }
 
-    private void welcomeMessage() {
+    private void showCommands() throws ParseException {
+        int menuItem = -1;
+        while( menuItem != 0){
+           menuItem = menu();
+            switch (menuItem){
+                case 1:
+                    showList();
+                    break;
+                case 2:
+                    System.out.println("Add a new Task:");
+                    addTask();
+                    break;
+                case 3:
+                    editTask();
+                    System.out.println("Edit a new task");
+                    break;
+                case 4:
+                    System.out.println("Save the task and continue");
+                    saveAndQuit();
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+            }
+        }
+
+    }
+
+    private void welcomeMessage() throws ParseException{
         System.out.println(">> Welcome to ToDoLy");
         System.out.println(">> You have 0 tasks todo and 0 tasks are done!");
         System.out.println(">> Pick an option:");
-        parser.showCommands();
+        showCommands();
     }
 
     public void editTask() {
@@ -116,7 +116,7 @@ public class Main {
 
     }
 
-    public void saveAndQuit(Command command) {
+    public void saveAndQuit() {
         System.exit(0);
     }
 
