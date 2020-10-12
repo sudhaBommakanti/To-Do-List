@@ -1,15 +1,22 @@
 
 import java.text.ParseException;
 import java.util.*;
+import java.io.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Main {
 
+    private FileHandler fileHandler;
+    private String path = "/Users/sudhabommakanti/IdeaProjects/To-Do-List/src/";
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
     private static ArrayList<Task> taskList = new ArrayList<>();
     public Task task;
+
+    public Main() {
+        fileHandler = new FileHandler();
+    }
 
     public void toDoLists() throws ParseException{
         welcomeMessage();
@@ -104,7 +111,6 @@ public class Main {
                 taskList.add(task);
 
                 for (int j = 0; j < taskList.size(); j++) {
-                    FileHandler fileHandler = new FileHandler();
                     fileHandler.writeAsData(taskList);
                 }
                 System.out.println("Do you want to continue to add another task:");
@@ -121,7 +127,25 @@ public class Main {
     }
 
     public void showList() {
-        System.out.println();
+        System.out.println("\nTask List\n");
+           try {
+               Scanner inFile = new Scanner(new FileReader( path + "Task.txt"));
+               String line;
+               int number = 1;
+               while(inFile.hasNextLine()){
+                   line = inFile.nextLine();
+                   System.out.println(number + ". " + line);
+                   ++number;
+               }
+               System.out.println();
+               inFile.close();
+           } catch (FileNotFoundException ioe) {
+               System.out.println(ioe);
+           }
+
+        ArrayList<Task> checkData = fileHandler.readAsData();
+        System.out.println(checkData);
+        System.out.println("----------------------");
         System.out.println("----------------------------------------------");
         System.out.println("To-Do List");
         System.out.println("----------------------------------------------");

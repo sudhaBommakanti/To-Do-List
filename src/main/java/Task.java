@@ -6,17 +6,17 @@ import java.io.Serializable;
 public class Task implements Serializable
 {
     private String title;
-    private Date theDate;
+    private Date dueDate;
     private String status;
-    private String projectCategory;
+    private String project;
 
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
 
-    public Task(String title, Date dueDate, String status, String projectCategory) {
+    public Task(String title, Date dueDate, String status, String project) {
         this.title = title;
-        theDate = dueDate;
+        this.dueDate = dueDate;
         this.status = status;
-        this.projectCategory = projectCategory;
+        this.project = project;
     }
 
     public String getTitle() {
@@ -24,7 +24,7 @@ public class Task implements Serializable
     }
 
     public Date getDate() {
-        return theDate;
+        return this.dueDate;
     }
 
     public String getStatus() {
@@ -32,11 +32,12 @@ public class Task implements Serializable
     }
 
     public String getProjectCategory() {
-        return this.projectCategory;
+        return this.project;
     }
 
     public String getItem() {
-        return this.title + " | " + format.format(theDate) + " | " + this.status + " | " + this.projectCategory;
+        return "" + this.title + "**" + format.format(this.dueDate) + "**" + this.status + "**" + this.project;
+        //return "" + this.title + "**" + format.format(this.dueDate) + "**" + this.status + "**" + this.project ;
     }
 
 }
