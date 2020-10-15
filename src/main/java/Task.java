@@ -40,4 +40,10 @@ public class Task implements Serializable
         //return "" + this.title + "**" + format.format(this.dueDate) + "**" + this.status + "**" + this.project ;
     }
 
+    @Override
+    public String toString() {
+        return "" + this.title + "**" + format.format(this.dueDate) + "**" + this.status + "**" + this.project;
+        //return "" + this.title + "**" + format.format(this.dueDate) + "**" + this.status + "**" + this.project ;
+    }
+
 }
