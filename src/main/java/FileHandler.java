@@ -1,63 +1,58 @@
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FileHandler class to write the data into the file and read data from the file
- *
  * @author Sudha Bommakanti
  * @version 2020.10.11
  */
 public class FileHandler {
     private String path = "/Users/sudhabommakanti/IdeaProjects/To-Do-List/src/main/java/";
-    String content = "Task_Title| Due date | Status | Project ";
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
-     * Method to write the task data into the file called Task.txt
-     * @ param ArrayList of Task
+     * Method to write the list of tasks into the file called Task.txt
+     * @ param List of Tasks
      */
-    public void writeAsData(ArrayList<Task> list) {
-        int counter = 0;
+    public void writeAsObject(List<Task> list) {
         try {
-            FileWriter fileWriter = new FileWriter(new File(path + "Task.txt"));
-            BufferedWriter bw = new BufferedWriter(fileWriter);
-            for (Task task : list) {
-                bw.write(task.getItem() + "\n");
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i));
             }
-            bw.close();
+            FileOutputStream file = new FileOutputStream(path + "Task.txt");
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            // writes objects to output stream
+            output.writeObject(list);
+            output.close();
+            file.close();
         } catch (IOException e) {
-            System.out.println(("File doesn't found: " + e));
+            System.out.println("File not found " + e);
         }
     }
 
     /**
      * Method to read the task data from the file called Task.txt
-     * returns arraylist of tasks.
+     * returns List of tasks.
      */
-    public ArrayList<Task> readAsData() {
-        ArrayList<Task> list = new ArrayList<>();
-
+    public List<Task> readAsObject() {
+        List<Task> list = new ArrayList<>();
         try {
-            FileReader fileReader = new FileReader(new File(path + "Task.txt"));
-            BufferedReader br = new BufferedReader(fileReader);
-
-            String line = "";
-            String[] data;
-            while ((line = br.readLine()) != null) {
-                //data = line.split("\\|\\|");
-                data = line.split("\\*\\*");
-                //System.out.println("the available data" + data[1]);
-                Task a = new Task(data[0], format.parse(data[1]), data[2], data[3]);
-                //Task a = new Task(data[0],data[1],data[2]),data[3]);
-                list.add(a);
-            }
-
-            br.close();
-        } catch (IOException | ParseException e) {
+            FileInputStream file = new FileInputStream(path + "Task.txt");
+            ObjectInputStream stream = new ObjectInputStream(file);
+            // reads objects from input  stream
+            list = (ArrayList<Task>) stream.readObject();
+            stream.close();
+            file.close();
+        } catch (IOException e) {
             System.out.println("File not found " + e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("problems inside the file " + e);
         }
         return list;
     }
 }
+
+
+
