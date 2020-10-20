@@ -102,13 +102,17 @@ public class Main {
      * This method show the list of tasks that the user has saved to the task list file.
      */
     public void showList() {
-        System.out.println("\nTask List\n");
+        System.out.println("Task List\n");
         //ArrayList<Task> checkData = fileHandler.readAsData();
        // System.out.println(checkData);
         int number = 0;
         for (Task item : taskList) {
-            System.out.println(++number + ". " + item.getItem());
+            System.out.println(++number + ". " + item.getItem() + "\n");
         }
+    }
+
+    public void checkTasks() {
+
     }
 
     /**
@@ -206,7 +210,17 @@ public class Main {
 
     public void markAsDone() {
         System.out.println("mark as done"); // method to be implemented
+            System.out.println("toggle task");
+            System.out.println("Enter the task index to mark the status");
+            Scanner input = new Scanner(System.in);
+            int index = input.nextInt();
+            Task taskAtIndex = taskList.get(index);
+            String taskAtIndexStatus = taskAtIndex.getStatus();
+            if(taskAtIndexStatus == "pending")
+                taskAtIndex.setStatus("Done");
+            taskList.add(index, taskAtIndex);
     }
+
 
     /**
      * sub task of edit task method
