@@ -14,14 +14,14 @@ public class FileHandler {
 
     /**
      * Method to write the list of tasks into the file called Task.txt
-     * @ param List of Tasks
+     * @ param List of Tasks and filename as string
      */
-    public void writeAsObject(List<Task> list) {
+    public void writeAsObject(List<Task> list, String fileName) {
         try {
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i));
             }
-            FileOutputStream file = new FileOutputStream(path + "Task.txt");
+            FileOutputStream file = new FileOutputStream(path + fileName);
             ObjectOutputStream output = new ObjectOutputStream(file);
             // writes objects to output stream
             output.writeObject(list);
@@ -34,12 +34,13 @@ public class FileHandler {
 
     /**
      * Method to read the task data from the file called Task.txt
+     * @ param filename as string
      * returns List of tasks.
      */
-    public List<Task> readAsObject() {
+    public List<Task> readAsObject(String filename) {
         List<Task> list = new ArrayList<>();
         try {
-            FileInputStream file = new FileInputStream(path + "Task.txt");
+            FileInputStream file = new FileInputStream(path + "Task.txt"); //TODO
             ObjectInputStream stream = new ObjectInputStream(file);
             // reads objects from input  stream
             list = (ArrayList<Task>) stream.readObject();
