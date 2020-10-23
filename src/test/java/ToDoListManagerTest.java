@@ -9,19 +9,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TaskTest
+public class ToDoListManagerTest
 {
     private static ToDoListManager toDo;
     private static FileHandler fileHandler;
-    //SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
-
-    @BeforeAll
+    /**
+     * init method before writing test Methods
+     * create a task and add it to the list
+     * create a file handler and write the task object to it in the new text file.
+     */
+   @BeforeAll
     public static void init() throws ParseException
     {
-        /*
-        * 1. copy the file as it now to the resources in the test folder
-        * 2. create a file handler and add some tasks manually to the filehandler
-        */
         SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
         Task a1 =  new Task("title1",format.parse("20/03/2019"), "done", "bank");
         List<Task> list = new ArrayList<>();
@@ -32,20 +31,17 @@ public class TaskTest
 
     }
 
-    @Test
-    public void test() {
-        assertTrue(true);
-    }
-
+    // method to check the count of todo tasks
     @Test
     public void checkCountToDoTaskTest() {
-        int expected = 3;
+        int expected = 1;
         assertEquals(expected, toDo.checkToDoTask());
     }
 
+    // method to check the count of done tasks
     @Test
     public void checkCountDoneTaskTest() {
-        int expected = 2;
+        int expected = 1;
         assertEquals(expected, toDo.checkDoneTasks());
     }
 }
